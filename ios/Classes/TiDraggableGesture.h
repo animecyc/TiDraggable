@@ -34,65 +34,14 @@
  * limitations under the License.
  */
 
-#import "TiDraggableModule.h"
-#import "TiBase.h"
-#import "TiHost.h"
-#import "TiUtils.h"
-#import "TiViewProxy.h"
-#import "TiDraggableGesture.h"
+#import <UIKit/UIKit.h>
+#import "TiUIView.h"
 
-@implementation TiDraggableModule
+@interface TiDraggableGesture : NSObject<UIGestureRecognizerDelegate>
 
-#pragma mark Internal
+-(id)initWithView:(UIView*)view andOptions:(NSDictionary*)options;
 
--(id)moduleGUID
-{
-	return @"e8c13998-8fa8-4cee-8078-353c27e84d19";
-}
-
--(NSString*)moduleId
-{
-	return @"ti.draggable";
-}
-
-#pragma mark Lifecycle
-
--(void)startup
-{
-	[super startup];
-}
-
--(void)shutdown:(id)sender
-{
-	[super shutdown:sender];
-}
-
-#pragma mark Cleanup
-
--(void)dealloc
-{
-	[super dealloc];
-}
-
-#pragma mark Internal Memory Management
-
--(void)didReceiveMemoryWarning:(NSNotification*)notification
-{
-	[super didReceiveMemoryWarning:notification];
-}
-
--(void)makeDraggable:(id)args
-{
-    ENSURE_UI_THREAD_1_ARG(args);
-    
-    TiViewProxy* proxy = nil;
-    NSDictionary* options = nil;
-    
-    ENSURE_ARG_AT_INDEX(proxy, args, 0, TiViewProxy);
-    ENSURE_ARG_OR_NIL_AT_INDEX(options, args, 1, NSDictionary);
-    
-    TiViewProxy* theProxy = [(TiViewProxy*) proxy autorelease];
-    TiDraggableGesture* draggable = [[TiDraggableGesture alloc] initWithView:[theProxy view] andOptions:options];
-}
+@property (nonatomic, assign) TiUIView* view;
+@property (nonatomic, retain) NSDictionary* options;
 
 @end
