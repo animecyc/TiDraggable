@@ -86,6 +86,31 @@
             });
 
             return view;
+        },
+        createNavigationWindow = function() {
+            var navWindow = Ti.UI.iOS.createNavigationWindow({
+                window : Ti.UI.createWindow({
+                    backgroundColor : 'orange'
+                })
+            });
+
+            navWindow.open();
+
+            navWindow.openWindow(Ti.UI.createWindow({
+                backgroundColor: 'blue'
+            }));
+
+            subscribe(navWindow, {
+                'start move end cancel' : function (e) {
+                    console.log(
+                        'Event: ' + e.type,
+                        'Left: ' + e.left,
+                        'Top: ' + e.top
+                    );
+                }
+            });
+
+            return navWindow;
         };
 
     mainWindow.add(createDraggableSquare('Horizontal', 'red', 'x'));
@@ -93,4 +118,12 @@
     mainWindow.add(createDraggableSquare('Free', 'green'));
 
     mainWindow.open();
+
+    Draggable.makeDraggable(createNavigationWindow(), {
+        axis: 'x',
+        minLeft : 0,
+        maxLeft : 150,
+        ensureRight: true
+    });
+
 }());
