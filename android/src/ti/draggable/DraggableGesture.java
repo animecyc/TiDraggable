@@ -430,12 +430,12 @@ public class DraggableGesture implements OnTouchListener
 				TiViewProxy mappedProxy = (TiViewProxy) map.get("view");
 				View mappedView = mappedProxy.peekView().getOuterView();
 				double parallaxAmount = map.containsKeyAndNotNull("parallaxAmount") ? TiConvert.toDouble(map, "parallaxAmount") : 1;
+				
+				double newTranslationX = mappedView.getTranslationX() - translationX / parallaxAmount;
+				double newTranslationY = mappedView.getTranslationY() - translationY / parallaxAmount;
 
-				translationX = mappedView.getTranslationX() - translationX / parallaxAmount;
-				translationY = mappedView.getTranslationY() - translationY / parallaxAmount;
-
-				mappedView.setTranslationX((float) translationX);
-				mappedView.setTranslationY((float) translationY);
+				mappedView.setTranslationX((float) newTranslationX);
+				mappedView.setTranslationY((float) newTranslationY);
 			}
 		}
 	}
