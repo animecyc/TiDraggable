@@ -185,19 +185,23 @@
         if(hasMaxLeft && newCenter.x - size.width / 2 > maxLeft)
         {
             newCenter.x = maxLeft + size.width / 2;
+            tmpTranslationX = newCenter.x - self.proxy.view.center.x;
         }
         else if(hasMinLeft && newCenter.x - size.width / 2 < minLeft)
         {
             newCenter.x = minLeft + size.width / 2;
+            tmpTranslationX = newCenter.x - self.proxy.view.center.x;
         }
 
         if(hasMaxTop && newCenter.y - size.height / 2 > maxTop)
         {
             newCenter.y = maxTop + size.height / 2;
+            tmpTranslationY = newCenter.y - self.proxy.view.center.y;
         }
         else if(hasMinTop && newCenter.y - size.height / 2 < minTop)
         {
             newCenter.y = minTop + size.height / 2;
+            tmpTranslationY = newCenter.y - self.proxy.view.center.y;
         }
     }
 
