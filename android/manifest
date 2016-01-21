@@ -1,6 +1,6 @@
-version: 2.0.4
+version: 2.0.5
 apiversion: 2
-architectures: armeabi armeabi-v7a x86
+architectures: armeabi armeabi-v7a x86 x86_64
 description: Ti.Draggable
 author: Seth Benjamin
 license: GPLv3
